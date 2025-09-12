@@ -1,3 +1,6 @@
 import "./index.css";
 
-export * from "./Dropdown";
+export { Dropdown } from "./Dropdown";
+
+export type { DropdownProps } from "./types";
+export type { DropdownOptionProps } from "./types";
