@@ -91,15 +91,19 @@ export const Dropdown: DropdownComponent = ({
     if (Array.isArray(selected)) {
       result = selected.map((select) => (
         <div
+          role="group"
+          aria-label={`Selected: ${select.label}`}
           key={select.value}
           className="flex w-fit items-center gap-1 rounded-2xl border border-gray-100 bg-gray-100 px-2 py-1 text-xs text-gray-600 dark:border-neutral-700 dark:bg-neutral-700 dark:text-gray-300"
         >
           <span>{select.label}</span>
-          <CircleX
-            size={16}
+          <button
+            aria-label={`Remove ${select.label}`}
             onClick={(e) => handleClick(e, select.value)}
             className="flex-shrink-0 text-gray-500 dark:text-gray-400"
-          />
+          >
+            <CircleX size={16} />
+          </button>
         </div>
       ));
     } else {
@@ -112,6 +116,12 @@ export const Dropdown: DropdownComponent = ({
 
     return (
       <button
+        role="combobox"
+        aria-expanded={isOpen}
+        aria-haspopup="listbox"
+        aria-controls={`${dropdownId}-listbox`}
+        aria-label={label || "Select an option"}
+        aria-activedescendant={`${dropdownId}-listbox`}
         id={dropdownId}
         type="button"
         className={`flex min-h-9 w-full cursor-pointer flex-wrap items-center gap-1 rounded-md border px-2 py-1 text-left ${outlined ? "border-gray-300 bg-transparent text-gray-500 dark:border-neutral-700 dark:text-gray-300" : "border-gray-300 bg-white text-gray-500 dark:border-neutral-700 dark:bg-neutral-800 dark:text-gray-300"}`}
@@ -150,6 +160,9 @@ export const Dropdown: DropdownComponent = ({
 
     const dropdown = (
       <div
+        role="listbox"
+        aria-multiselectable={multipleSelect}
+        id={`${dropdownId}-listbox`}
         ref={optionsRef}
         className={`mt-2 border border-gray-300 bg-white shadow-xl dark:border-neutral-700 dark:bg-neutral-800 ${
           usePortal ? "absolute z-[1000]" : ""
@@ -234,6 +247,7 @@ export const Dropdown: DropdownComponent = ({
         setIsOpen,
         onChange,
         render,
+        dropdownId,
       }}
     >
       <div className="flex flex-row gap-8">

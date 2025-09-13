@@ -79,6 +79,9 @@ export const Option: React.FC<DropdownOptionProps> = ({ value, label }) => {
     <div
       onClick={handleClick}
       role="option"
+      id={`${context.dropdownId}-option-${value}`}
+      aria-selected={isSelected}
+      tabIndex={isSelected ? 0 : -1}
       className={
         !context.render
           ? `cursor-pointer px-4 py-1 text-gray-500 hover:bg-green-50 dark:text-gray-400 dark:hover:bg-green-950 ${isSelected ? "bg-green-50 dark:bg-green-950" : ""}`

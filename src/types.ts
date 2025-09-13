@@ -19,13 +19,9 @@ export interface DropdownProps {
 // Dropdown Option
 export interface DropdownOptionProps extends SelectOption {}
 
-// Dropdown Search
-export interface DropdownSearchProps {
-  placeholder?: string;
-}
-
 // Other
 export interface DropdownContextType {
+  dropdownId: string;
   isOpen?: boolean;
   setIsOpen?: (isOpen: boolean) => void;
   searchText?: string;

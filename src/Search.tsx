@@ -1,9 +1,8 @@
 import { useContext } from "react";
-import { DropdownSearchProps } from "./types";
 import { DropdownContext } from "./Dropdown";
-import { CircleX, CircleXIcon, SearchIcon, XCircle } from "lucide-react";
+import { CircleX, SearchIcon } from "lucide-react";
 
-export const Search: React.FC<DropdownSearchProps> = ({ placeholder = "" }) => {
+export const Search = () => {
   const context = useContext(DropdownContext);
   if (!context) {
     throw new Error("Dropdown.Search must be used within a Dropdown");
@@ -22,7 +21,10 @@ export const Search: React.FC<DropdownSearchProps> = ({ placeholder = "" }) => {
       <input
         className="h-full w-full bg-white text-gray-500 focus:outline-none focus:ring-0 dark:bg-neutral-800 dark:text-gray-400"
         type="text"
-        placeholder={placeholder}
+        role="searchbox"
+        aria-label="Search options"
+        aria-describedby={`${context.dropdownId}-search-help`}
+        aria-controls={`${context.dropdownId}-listbox`}
         onChange={handleChange}
         value={context.searchText}
       />
