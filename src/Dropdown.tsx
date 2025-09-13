@@ -151,7 +151,7 @@ export const Dropdown: DropdownComponent = ({
     const dropdown = (
       <div
         ref={optionsRef}
-        className={`bg-whiteshadow-xl mt-2 border border-gray-300 dark:border-neutral-700 dark:bg-neutral-800 ${
+        className={`mt-2 border border-gray-300 bg-white shadow-xl dark:border-neutral-700 dark:bg-neutral-800 ${
           usePortal ? "absolute z-[1000]" : ""
         }`}
         style={
