@@ -1,13 +1,20 @@
 import { useContext } from "react";
-import { DropdownContext } from "./Dropdown";
 import { CircleX, SearchIcon } from "lucide-react";
+import { DropdownContext } from "./Dropdown.contenxt";
 
-export const Search = () => {
+/**
+ * Search component
+ */
+export const Search: React.FC = () => {
   const context = useContext(DropdownContext);
   if (!context) {
     throw new Error("Dropdown.Search must be used within a Dropdown");
   }
 
+  /**
+   * Handle change
+   * @param {React.ChangeEvent<HTMLInputElement>} e
+   */
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     context.setSearchText(e.target.value);
   };

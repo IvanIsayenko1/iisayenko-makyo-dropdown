@@ -2,9 +2,6 @@
 
 **Important**: This project is a technical test made for Makyo. It is not intended for production use.
 
-- keyboard navigation is not implemented.
-- unit testing are not done.
-
 ## ✨ Features
 
 - 🔍 **Searchable** - Built-in search functionality with highlighting

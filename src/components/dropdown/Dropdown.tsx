@@ -1,5 +1,4 @@
-import {
-  createContext,
+import React, {
   useCallback,
   useEffect,
   useId,
@@ -7,17 +6,19 @@ import {
   useRef,
   useState,
 } from "react";
-import { DropdownContextType, DropdownProps, DropdownOption } from "./types";
-import { Option } from "./Option";
-import { Search } from "./Search";
 import { Virtuoso } from "react-virtuoso";
 import { createPortal } from "react-dom";
 import { ChevronDown, CircleX } from "lucide-react";
+import { DropdownProps, DropdownOption } from "./types";
+import { Option } from "./Option";
+import { Search } from "./Search";
+import { DropdownContext } from "./Dropdown.contenxt";
 
-// create the context
-export const DropdownContext = createContext<DropdownContextType | null>(null);
-
-// the component
+/**
+ * Dropdown component
+ * @param {DropdownProps} props
+ * @returns {JSX.Element}
+ */
 export const Dropdown: React.FC<DropdownProps> = ({
   name,
   multipleSelect = false,
@@ -50,6 +51,7 @@ export const Dropdown: React.FC<DropdownProps> = ({
 
   /**
    * Filter options based on the search text
+   * @returns {DropdownOption[]}
    */
   const filteredOptions = useMemo(() => {
     if (!searchText) return options;
@@ -81,8 +83,15 @@ export const Dropdown: React.FC<DropdownProps> = ({
     return <input type="hidden" name={name} value={selected.value} />;
   }, [name, selected]);
 
+  /**
+   * Render the trigger box and the selected values
+   * @returns {JSX.Element}
+   */
   const renderTriggerBox = useMemo(() => {
-    const handleClick = (e: React.MouseEvent, value: string) => {
+    const handleClick = (
+      e: React.MouseEvent | React.KeyboardEvent,
+      value: string
+    ) => {
       e.stopPropagation();
       if (Array.isArray(selected)) {
         const updated = selected.filter((item) => item.value !== value);
@@ -110,7 +119,7 @@ export const Dropdown: React.FC<DropdownProps> = ({
             onKeyDown={(e) => {
               if (e.key === "Enter" || e.key === " ") {
                 e.preventDefault();
-                handleClick(e as any, select.value);
+                handleClick(e as React.KeyboardEvent, select.value);
               }
             }}
             className="flex-shrink-0 cursor-pointer rounded text-gray-600 hover:text-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-1 dark:text-gray-300 dark:hover:text-gray-100"
@@ -150,6 +159,7 @@ export const Dropdown: React.FC<DropdownProps> = ({
   /**
    * Render options based on the filtered options.
    * If the filtered options are more than 100, Virtuoso renders them.
+   * @returns {JSX.Element}
    */
   const renderOptions = useMemo(() => {
     let content;
@@ -206,6 +216,9 @@ export const Dropdown: React.FC<DropdownProps> = ({
     return dropdown;
   }, [filteredOptions, maxHeight, usePortal, position, search]);
 
+  /**
+   * Update the position of the dropdown options box.
+   */
   const updatePosition = useCallback(() => {
     if (ref.current) {
       const rect = ref.current.getBoundingClientRect();
@@ -218,7 +231,11 @@ export const Dropdown: React.FC<DropdownProps> = ({
     }
   }, []);
 
-  // handle the click outside the dropdown
+  /**
+   * Handle the click outside the dropdown.
+   * Updates the position of the options box when using portal
+   *
+   */
   useEffect(() => {
     if (!isOpen) return;
 

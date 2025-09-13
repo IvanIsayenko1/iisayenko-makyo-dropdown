@@ -1,10 +1,10 @@
 
-> iisayenko-makyo-dropdown@1.0.1 build-storybook
-> storybook build --output-dir=/var/folders/33/mkbn5v512hb19r3f829zzfl40000gn/T/chromatic--51445-VIqBXo3cDuwR
+> iisayenko-makyo-dropdown@1.0.2 build-storybook
+> storybook build --output-dir=/var/folders/33/mkbn5v512hb19r3f829zzfl40000gn/T/chromatic--61175-6YNLUG5qVp4Z
 
 [1mstorybook v9.1.5
 [22m
-info => Cleaning outputDir: [36m../../../../../var/folders/33/mkbn5v512hb19r3f829zzfl40000gn/T/chromatic--51445-VIqBXo3cDuwR[39m
+info => Cleaning outputDir: [36m../../../../../var/folders/33/mkbn5v512hb19r3f829zzfl40000gn/T/chromatic--61175-6YNLUG5qVp4Z[39m
 info => Loading presets
 info => Building manager..
 info => Building preview..
@@ -14,19 +14,19 @@ transforming...
 [32m✓[39m 1727 modules transformed.
 rendering chunks...
 computing gzip size...
-[2m../../../../../var/folders/33/mkbn5v512hb19r3f829zzfl40000gn/T/chromatic--51445-VIqBXo3cDuwR/[22m[32miframe.html                               [39m[1m[2m   18.32 kB[22m[1m[22m[2m │ gzip:   5.15 kB[22m
-[2m../../../../../var/folders/33/mkbn5v512hb19r3f829zzfl40000gn/T/chromatic--51445-VIqBXo3cDuwR/[22m[2massets/[22m[35miframe-Bb2GvAYb.css                [39m[1m[2m    9.69 kB[22m[1m[22m[2m │ gzip:   2.56 kB[22m
-[2m../../../../../var/folders/33/mkbn5v512hb19r3f829zzfl40000gn/T/chromatic--51445-VIqBXo3cDuwR/[22m[2massets/[22m[36mindex-BeE2SNS0.js                  [39m[1m[2m    0.13 kB[22m[1m[22m[2m │ gzip:   0.12 kB[22m
-[2m../../../../../var/folders/33/mkbn5v512hb19r3f829zzfl40000gn/T/chromatic--51445-VIqBXo3cDuwR/[22m[2massets/[22m[36mindex-iqzxGf4x.js                  [39m[1m[2m    0.46 kB[22m[1m[22m[2m │ gzip:   0.30 kB[22m
-[2m../../../../../var/folders/33/mkbn5v512hb19r3f829zzfl40000gn/T/chromatic--51445-VIqBXo3cDuwR/[22m[2massets/[22m[36mpreload-helper-D9Z9MdNV.js         [39m[1m[2m    1.23 kB[22m[1m[22m[2m │ gzip:   0.72 kB[22m
-[2m../../../../../var/folders/33/mkbn5v512hb19r3f829zzfl40000gn/T/chromatic--51445-VIqBXo3cDuwR/[22m[2massets/[22m[36mindex-DaXTpSNB.js                  [39m[1m[2m    3.89 kB[22m[1m[22m[2m │ gzip:   1.52 kB[22m
-[2m../../../../../var/folders/33/mkbn5v512hb19r3f829zzfl40000gn/T/chromatic--51445-VIqBXo3cDuwR/[22m[36mvite-inject-mocker-entry.js               [39m[1m[2m   28.76 kB[22m[1m[22m[2m │ gzip:  10.00 kB[22m
-[2m../../../../../var/folders/33/mkbn5v512hb19r3f829zzfl40000gn/T/chromatic--51445-VIqBXo3cDuwR/[22m[2massets/[22m[36mColor-AVL7NMMY-B_bY6ltV.js         [39m[1m[2m   29.23 kB[22m[1m[22m[2m │ gzip:  11.05 kB[22m
-[2m../../../../../var/folders/33/mkbn5v512hb19r3f829zzfl40000gn/T/chromatic--51445-VIqBXo3cDuwR/[22m[2massets/[22m[36mmatchers-7Z3WT2CE-CcSi9QFY.js      [39m[1m[2m   29.66 kB[22m[1m[22m[2m │ gzip:  10.29 kB[22m
-[2m../../../../../var/folders/33/mkbn5v512hb19r3f829zzfl40000gn/T/chromatic--51445-VIqBXo3cDuwR/[22m[2massets/[22m[36mDropdown.stories-BXJEKifF.js       [39m[1m[2m   73.34 kB[22m[1m[22m[2m │ gzip:  24.49 kB[22m
-[2m../../../../../var/folders/33/mkbn5v512hb19r3f829zzfl40000gn/T/chromatic--51445-VIqBXo3cDuwR/[22m[2massets/[22m[36mreact-18-ED0OnENN.js               [39m[1m[2m  174.57 kB[22m[1m[22m[2m │ gzip:  55.28 kB[22m
-[2m../../../../../var/folders/33/mkbn5v512hb19r3f829zzfl40000gn/T/chromatic--51445-VIqBXo3cDuwR/[22m[2massets/[22m[36maxe-Dx_tWW2c.js                    [39m[1m[33m  572.29 kB[39m[22m[2m │ gzip: 158.02 kB[22m
-[2m../../../../../var/folders/33/mkbn5v512hb19r3f829zzfl40000gn/T/chromatic--51445-VIqBXo3cDuwR/[22m[2massets/[22m[36mDocsRenderer-PQXLIZUC-p3TxspXh.js  [39m[1m[33m  657.94 kB[39m[22m[2m │ gzip: 216.89 kB[22m
-[2m../../../../../var/folders/33/mkbn5v512hb19r3f829zzfl40000gn/T/chromatic--51445-VIqBXo3cDuwR/[22m[2massets/[22m[36miframe-b5pgtEFt.js                 [39m[1m[33m1,235.19 kB[39m[22m[2m │ gzip: 343.26 kB[22m
-[32m✓ built in 4.15s[39m
-info => Output directory: /var/folders/33/mkbn5v512hb19r3f829zzfl40000gn/T/chromatic--51445-VIqBXo3cDuwR
+[2m../../../../../var/folders/33/mkbn5v512hb19r3f829zzfl40000gn/T/chromatic--61175-6YNLUG5qVp4Z/[22m[32miframe.html                               [39m[1m[2m   18.32 kB[22m[1m[22m[2m │ gzip:   5.15 kB[22m
+[2m../../../../../var/folders/33/mkbn5v512hb19r3f829zzfl40000gn/T/chromatic--61175-6YNLUG5qVp4Z/[22m[2massets/[22m[35miframe-Dkb7e6Tr.css                [39m[1m[2m   10.39 kB[22m[1m[22m[2m │ gzip:   2.63 kB[22m
+[2m../../../../../var/folders/33/mkbn5v512hb19r3f829zzfl40000gn/T/chromatic--61175-6YNLUG5qVp4Z/[22m[2massets/[22m[36mindex-BcPN8XzB.js                  [39m[1m[2m    0.13 kB[22m[1m[22m[2m │ gzip:   0.12 kB[22m
+[2m../../../../../var/folders/33/mkbn5v512hb19r3f829zzfl40000gn/T/chromatic--61175-6YNLUG5qVp4Z/[22m[2massets/[22m[36mindex-DthdQUbV.js                  [39m[1m[2m    0.46 kB[22m[1m[22m[2m │ gzip:   0.30 kB[22m
+[2m../../../../../var/folders/33/mkbn5v512hb19r3f829zzfl40000gn/T/chromatic--61175-6YNLUG5qVp4Z/[22m[2massets/[22m[36mpreload-helper-D9Z9MdNV.js         [39m[1m[2m    1.23 kB[22m[1m[22m[2m │ gzip:   0.72 kB[22m
+[2m../../../../../var/folders/33/mkbn5v512hb19r3f829zzfl40000gn/T/chromatic--61175-6YNLUG5qVp4Z/[22m[2massets/[22m[36mindex-CfVCxiYm.js                  [39m[1m[2m    3.89 kB[22m[1m[22m[2m │ gzip:   1.52 kB[22m
+[2m../../../../../var/folders/33/mkbn5v512hb19r3f829zzfl40000gn/T/chromatic--61175-6YNLUG5qVp4Z/[22m[36mvite-inject-mocker-entry.js               [39m[1m[2m   28.76 kB[22m[1m[22m[2m │ gzip:  10.00 kB[22m
+[2m../../../../../var/folders/33/mkbn5v512hb19r3f829zzfl40000gn/T/chromatic--61175-6YNLUG5qVp4Z/[22m[2massets/[22m[36mColor-AVL7NMMY-BRtpcPO2.js         [39m[1m[2m   29.23 kB[22m[1m[22m[2m │ gzip:  11.05 kB[22m
+[2m../../../../../var/folders/33/mkbn5v512hb19r3f829zzfl40000gn/T/chromatic--61175-6YNLUG5qVp4Z/[22m[2massets/[22m[36mmatchers-7Z3WT2CE-CcSi9QFY.js      [39m[1m[2m   29.66 kB[22m[1m[22m[2m │ gzip:  10.29 kB[22m
+[2m../../../../../var/folders/33/mkbn5v512hb19r3f829zzfl40000gn/T/chromatic--61175-6YNLUG5qVp4Z/[22m[2massets/[22m[36mDropdown.stories-DlMmmcDn.js       [39m[1m[2m   73.59 kB[22m[1m[22m[2m │ gzip:  24.59 kB[22m
+[2m../../../../../var/folders/33/mkbn5v512hb19r3f829zzfl40000gn/T/chromatic--61175-6YNLUG5qVp4Z/[22m[2massets/[22m[36mreact-18-C4XuJd_X.js               [39m[1m[2m  174.57 kB[22m[1m[22m[2m │ gzip:  55.28 kB[22m
+[2m../../../../../var/folders/33/mkbn5v512hb19r3f829zzfl40000gn/T/chromatic--61175-6YNLUG5qVp4Z/[22m[2massets/[22m[36maxe-CalFy3oj.js                    [39m[1m[33m  572.29 kB[39m[22m[2m │ gzip: 158.02 kB[22m
+[2m../../../../../var/folders/33/mkbn5v512hb19r3f829zzfl40000gn/T/chromatic--61175-6YNLUG5qVp4Z/[22m[2massets/[22m[36mDocsRenderer-PQXLIZUC-DQGW6MCQ.js  [39m[1m[33m  657.94 kB[39m[22m[2m │ gzip: 216.89 kB[22m
+[2m../../../../../var/folders/33/mkbn5v512hb19r3f829zzfl40000gn/T/chromatic--61175-6YNLUG5qVp4Z/[22m[2massets/[22m[36miframe-BvqBKpgn.js                 [39m[1m[33m1,235.19 kB[39m[22m[2m │ gzip: 343.27 kB[22m
+[32m✓ built in 7.28s[39m
+info => Output directory: /var/folders/33/mkbn5v512hb19r3f829zzfl40000gn/T/chromatic--61175-6YNLUG5qVp4Z

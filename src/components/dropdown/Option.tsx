@@ -1,42 +1,63 @@
 import { useCallback, useContext, useMemo } from "react";
 import { DropdownOption } from "./types";
-import { DropdownContext } from "./Dropdown";
+import { DropdownContext } from "./Dropdown.contenxt";
 
+/**
+ * Option component
+ */
 export const Option: React.FC<DropdownOption> = ({ value, label }) => {
   const context = useContext(DropdownContext);
   if (!context) {
     throw new Error("Dropdown.Option must be used within a Dropdown");
   }
 
+  /**
+   * Check if the option is selected
+   * @returns {boolean}
+   */
   const isSelected = useMemo(() => {
     return Array.isArray(context.selected)
       ? context.selected.some((item) => item.value === value)
       : context.selected?.value === value;
   }, [context.selected, value]);
 
+  /**
+   * Handle click on the option
+   */
   const handleClick = useCallback(() => {
     if (context.multipleSelect) {
       if (Array.isArray(context.selected)) {
-        if (context.selected.some((item) => item.value === value)) {
-          context.setSelected(
-            context.selected.filter((item) => item.value !== value)
+        // clicking an option that was selected before
+        if (isSelected) {
+          const newSelected = context.selected.filter(
+            (item) => item.value !== value
           );
+          context.setSelected(newSelected);
+          context.onChange?.(newSelected);
           return;
         }
 
+        // clicking an option that was not selected before
         context.setSelected([...context.selected, { value, label }]);
         context.onChange?.([...context.selected, { value, label }]);
         return;
       }
+
+      // if not selected, select the option
       context.setSelected([{ value, label }]);
       context.onChange?.([{ value, label }]);
     } else {
+      // if not multiple select, close the dropdown
       context.setSelected({ value, label });
-      context.setIsOpen(false);
       context.onChange?.({ value, label });
+      context.setIsOpen(false);
     }
   }, [context, value, label]);
 
+  /**
+   * Highlight the match of the label
+   * @returns {ReactNode}
+   */
   const highlightMatchOfLabel = useMemo(() => {
     const searchText = context.searchText;
     if (!searchText) return label;

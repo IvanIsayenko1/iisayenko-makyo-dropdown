@@ -1,0 +1,12 @@
+[
+  {
+    "path": "dist/index.mjs",
+    "limit": "15 KB",
+    "gzip": true
+  },
+  {
+    "path": "dist/index.js",
+    "limit": "15 KB",
+    "gzip": true
+  }
+]
