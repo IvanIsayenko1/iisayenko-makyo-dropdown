@@ -2,6 +2,7 @@ import {
   createContext,
   useCallback,
   useEffect,
+  useId,
   useMemo,
   useRef,
   useState,
@@ -22,8 +23,14 @@ export const Dropdown: DropdownComponent = ({
   multipleSelect = false,
   search = false,
   options,
+  width = "350px",
   maxHeight = 300,
   usePortal = false,
+  label,
+  id,
+  outlined = false,
+  onChange,
+  render,
 }) => {
   const [searchText, setSearchText] = useState<string>("");
   const [selected, setSelected] = useState<
@@ -34,6 +41,8 @@ export const Dropdown: DropdownComponent = ({
 
   const ref = useRef<HTMLDivElement>(null);
   const optionsRef = useRef<HTMLDivElement>(null);
+
+  const dropdownId = id || useId();
 
   const handleClickBox = () => {
     setIsOpen(!isOpen);
@@ -68,31 +77,53 @@ export const Dropdown: DropdownComponent = ({
   }, [name, selected]);
 
   const renderTriggerBox = useMemo(() => {
+    const handleClick = (e: React.MouseEvent, value: string) => {
+      e.stopPropagation();
+      if (Array.isArray(selected)) {
+        const updated = selected.filter((item) => item.value !== value);
+        setSelected(updated);
+        onChange?.(updated);
+      }
+    };
+
     let result;
 
     if (Array.isArray(selected)) {
       result = selected.map((select) => (
-        <span className="p-1 rounded-2xl border flex gap-1 w-fit ">
-          {select.label}
-          <CircleX size={16} />
-        </span>
+        <div
+          key={select.value}
+          className="flex w-fit items-center gap-1 rounded-2xl border border-gray-100 bg-gray-100 px-2 py-1 text-xs text-gray-600 dark:border-neutral-700 dark:bg-neutral-700 dark:text-gray-300"
+        >
+          <span>{select.label}</span>
+          <CircleX
+            size={16}
+            onClick={(e) => handleClick(e, select.value)}
+            className="flex-shrink-0 text-gray-500 dark:text-gray-400"
+          />
+        </div>
       ));
     } else {
-      result = <span>{selected?.label}</span>;
+      result = (
+        <span className="text-gray-500 dark:text-gray-400">
+          {selected?.label}
+        </span>
+      );
     }
 
     return (
-      <div
-        className="flex flex-wrap gap-1 items-center border w-full min-h-6 "
+      <button
+        id={dropdownId}
+        type="button"
+        className={`flex min-h-9 w-full cursor-pointer flex-wrap items-center gap-1 rounded-md border px-2 py-1 text-left ${outlined ? "border-gray-300 bg-transparent text-gray-500 dark:border-neutral-700 dark:text-gray-300" : "border-gray-300 bg-white text-gray-500 dark:border-neutral-700 dark:bg-neutral-800 dark:text-gray-300"}`}
         onClick={handleClickBox}
       >
-        <span className="flex-1 flex flex-wrap">{result}</span>
+        <span className="flex flex-1 flex-wrap gap-1">{result}</span>
         <span className="ml-2">
-          <ChevronDown size={16} />
+          <ChevronDown size={16} className="text-gray-500 dark:text-gray-300" />
         </span>
-      </div>
+      </button>
     );
-  }, [selected, isOpen]);
+  }, [selected, isOpen, outlined]);
 
   /**
    * Render options based on the filtered options.
@@ -100,26 +131,27 @@ export const Dropdown: DropdownComponent = ({
    */
   const renderOptions = useMemo(() => {
     const content =
-      filteredOptions.length <= 100 ? (
-        <div style={{ maxHeight, overflow: "auto" }}>
+      filteredOptions.length <= 10 ? (
+        <div
+          style={{ maxHeight, overflow: "auto" }}
+          className="bg-white dark:bg-neutral-800"
+        >
           {filteredOptions.map((option) => (
-            <Dropdown.Option key={option.value} {...option} />
+            <Option key={option.value} {...option} />
           ))}
         </div>
       ) : (
         <Virtuoso
           style={{ height: maxHeight }}
           totalCount={filteredOptions.length}
-          itemContent={(index) => (
-            <Dropdown.Option {...filteredOptions[index]} />
-          )}
+          itemContent={(index) => <Option {...filteredOptions[index]} />}
         />
       );
 
     const dropdown = (
       <div
         ref={optionsRef}
-        className={`border bg-white shadow-md ${
+        className={`bg-whiteshadow-xl mt-2 border border-gray-300 dark:border-neutral-700 dark:bg-neutral-800 ${
           usePortal ? "absolute z-[1000]" : ""
         }`}
         style={
@@ -132,7 +164,7 @@ export const Dropdown: DropdownComponent = ({
             : {}
         }
       >
-        {search && <Dropdown.Search />}
+        {search && <Search />}
         {content}
       </div>
     );
@@ -143,6 +175,7 @@ export const Dropdown: DropdownComponent = ({
   const updatePosition = useCallback(() => {
     if (ref.current) {
       const rect = ref.current.getBoundingClientRect();
+
       setPosition({
         top: rect.bottom + window.scrollY,
         left: rect.left + window.scrollX,
@@ -197,24 +230,35 @@ export const Dropdown: DropdownComponent = ({
         selected,
         setSelected,
         multipleSelect,
+        isOpen,
+        setIsOpen,
+        onChange,
+        render,
       }}
     >
-      <div className="realtive w-96" ref={ref}>
-        {/* hidden inputs */}
-        {renderHiddenInput}
+      <div className="flex flex-row gap-8">
+        {label && (
+          <label
+            className="flex h-9 items-center text-sm font-medium text-gray-500 dark:text-gray-400"
+            htmlFor={dropdownId}
+          >
+            {label}
+          </label>
+        )}
+        <div className={"realtive"} style={{ width: width }} ref={ref}>
+          {/* hidden inputs */}
+          {renderHiddenInput}
 
-        {/* trigger box */}
-        {renderTriggerBox}
+          {/* trigger box */}
+          {renderTriggerBox}
 
-        {/* option list */}
-        {isOpen &&
-          (usePortal
-            ? createPortal(renderOptions, document.body)
-            : renderOptions)}
+          {/* option list */}
+          {isOpen &&
+            (usePortal
+              ? createPortal(renderOptions, document.body)
+              : renderOptions)}
+        </div>
       </div>
     </DropdownContext.Provider>
   );
 };
-
-Dropdown.Option = Option;
-Dropdown.Search = Search;

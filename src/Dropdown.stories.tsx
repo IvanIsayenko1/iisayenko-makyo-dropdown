@@ -1,32 +1,50 @@
 import { Dropdown } from "./Dropdown";
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta } from "@storybook/react";
+import { Option } from "./Option";
+import { Search } from "./Search";
 
 const meta: Meta<typeof Dropdown> = {
   title: "Components/Dropdown",
   component: Dropdown,
   subcomponents: {
-    Option: Dropdown.Option,
-    Search: Dropdown.Search,
+    Option: Option,
+    Search: Search,
   },
   parameters: {
     layout: "centered",
   },
   tags: ["autodocs"],
   argTypes: {
+    label: {
+      control: "text",
+      description: "Dropdown label",
+    },
     multipleSelect: {
       control: "boolean",
+      description: "Enable multiple select",
     },
     search: {
       control: "boolean",
+      description: "Enable search",
     },
     name: {
       control: "text",
-    },
-    options: {
-      control: "object",
+      description: "Dropdown name",
     },
     maxHeight: {
       control: "number",
+      description: "Dropdown options container max height",
+    },
+    width: {
+      control: "text",
+      description: "Dropdown width",
+    },
+    outlined: {
+      control: "boolean",
+      description: "Enable outlined style",
+    },
+    options: {
+      control: "object",
     },
   },
 };
@@ -35,11 +53,14 @@ export default meta;
 
 export const Default = {
   args: {
+    label: "Dropdown",
     multipleSelect: false,
     search: true,
     name: "dropdown",
     usePortal: false,
     maxHeight: 300,
+    width: "350px",
+    outlined: false,
     options: [
       { value: "value-1", label: "Long text" },
       { value: "value-2", label: "Long" },
@@ -300,6 +321,9 @@ export const Default = {
         label: "Long text example ninety-nine with meaningful content",
       },
       { value: "value-100", label: "Long text example one hundred" },
+      { value: "value-101", label: "Long text example one hundred-one" },
+      { value: "value-102", label: "Long text example one hundred-two" },
+      { value: "value-103", label: "Long text example one hundred-three" },
     ],
   },
   render: (args) => <Dropdown {...args} />,
