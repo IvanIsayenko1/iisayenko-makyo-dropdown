@@ -102,13 +102,21 @@ export const Dropdown: React.FC<DropdownProps> = ({
           className="flex w-fit items-center gap-1 rounded-2xl border border-gray-100 bg-gray-100 px-2 py-1 text-xs text-gray-600 dark:border-neutral-700 dark:bg-neutral-700 dark:text-gray-300"
         >
           <span>{select.label}</span>
-          <button
+          <span
+            role="button"
+            tabIndex={0}
             aria-label={`Remove ${select.label}`}
             onClick={(e) => handleClick(e, select.value)}
-            className="flex-shrink-0 text-gray-600 dark:text-gray-300"
+            onKeyDown={(e) => {
+              if (e.key === "Enter" || e.key === " ") {
+                e.preventDefault();
+                handleClick(e as any, select.value);
+              }
+            }}
+            className="flex-shrink-0 cursor-pointer rounded text-gray-600 hover:text-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-1 dark:text-gray-300 dark:hover:text-gray-100"
           >
             <CircleX size={16} />
-          </button>
+          </span>
         </div>
       ));
     } else {
