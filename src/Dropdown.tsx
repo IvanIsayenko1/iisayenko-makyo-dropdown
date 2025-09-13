@@ -145,7 +145,7 @@ export const Dropdown: React.FC<DropdownProps> = ({
    */
   const renderOptions = useMemo(() => {
     const content =
-      filteredOptions.length <= 10 ? (
+      filteredOptions.length <= 100 ? (
         <div
           style={{ maxHeight, overflow: "auto" }}
           className="bg-white dark:bg-neutral-800"

@@ -1,330 +1,328 @@
 import { Dropdown } from "./Dropdown";
-import type { Meta } from "@storybook/react";
-import { Option } from "./Option";
-import { Search } from "./Search";
+import type { Meta, StoryObj } from "@storybook/react";
+import { useState } from "react";
 
 const meta: Meta<typeof Dropdown> = {
   title: "Components/Dropdown",
   component: Dropdown,
-  subcomponents: {
-    Option: Option,
-    Search: Search,
-  },
   parameters: {
     layout: "centered",
+    docs: {
+      description: {
+        component: `
+
+## Features
+- Searchable with highlighting
+- Virtualized for large datasets
+- Portal support for z-index issues
+- Customizable rendering
+- Dark mode support
+        `,
+      },
+    },
   },
   tags: ["autodocs"],
   argTypes: {
     label: {
       control: "text",
-      description: "Dropdown label",
+      description: "Label displayed above the dropdown",
     },
     multipleSelect: {
       control: "boolean",
-      description: "Enable multiple select",
+      description: "Allow selecting multiple options",
     },
     search: {
       control: "boolean",
-      description: "Enable search",
+      description: "Enable search functionality with highlighting",
     },
-    name: {
-      control: "text",
-      description: "Dropdown name",
-    },
-    maxHeight: {
-      control: "number",
-      description: "Dropdown options container max height",
-    },
-    width: {
-      control: "text",
-      description: "Dropdown width",
+    usePortal: {
+      control: "boolean",
+      description: "Render dropdown in a portal (useful for z-index issues)",
     },
     outlined: {
       control: "boolean",
-      description: "Enable outlined style",
+      description: "Use outlined style instead of filled",
     },
-    options: {
-      control: "object",
+    width: {
+      control: "text",
+      description: "Dropdown width (CSS value)",
     },
+    maxHeight: {
+      control: { type: "range", min: 100, max: 500, step: 50 },
+      description: "Maximum height of options container",
+    },
+    onChange: { action: "changed" },
   },
 };
 
 export default meta;
+type Story = StoryObj<typeof meta>;
 
-export const Default = {
-  args: {
-    label: "Dropdown",
-    multipleSelect: false,
-    search: true,
-    name: "dropdown",
-    usePortal: false,
-    maxHeight: 300,
-    width: "350px",
-    outlined: false,
-    options: [
-      { value: "value-1", label: "Long text" },
-      { value: "value-2", label: "Long" },
-      { value: "value-3", label: "Long text with some meaningful content" },
-      {
-        value: "value-4",
-        label: "Long text more",
-      },
-      { value: "value-5", label: "Long text example five" },
-      { value: "value-6", label: "Long text example six with additional info" },
-      {
-        value: "value-7",
-        label: "Long text example seven with meaningful content",
-      },
-      {
-        value: "value-8",
-        label: "Long text example eight with more meaningful content",
-      },
-      { value: "value-9", label: "Long text example nine with extra details" },
-      {
-        value: "value-10",
-        label: "Long text example ten with extended description",
-      },
-      { value: "value-11", label: "Long text example eleven" },
-      {
-        value: "value-12",
-        label: "Long text example twelve with some content",
-      },
-      {
-        value: "value-13",
-        label: "Long text example thirteen with meaningful details",
-      },
-      {
-        value: "value-14",
-        label: "Long text example fourteen with extra meaningful content",
-      },
-      { value: "value-15", label: "Long text example fifteen" },
-      {
-        value: "value-16",
-        label: "Long text example sixteen with some extra text",
-      },
-      {
-        value: "value-17",
-        label: "Long text example seventeen with meaningful content",
-      },
-      {
-        value: "value-18",
-        label: "Long text example eighteen with more details and content",
-      },
-      { value: "value-19", label: "Long text example nineteen" },
-      {
-        value: "value-20",
-        label: "Long text example twenty with extra meaningful text",
-      },
-      { value: "value-21", label: "Long text example twenty-one" },
-      {
-        value: "value-22",
-        label: "Long text example twenty-two with some content",
-      },
-      {
-        value: "value-23",
-        label: "Long text example twenty-three with meaningful details",
-      },
-      {
-        value: "value-24",
-        label: "Long text example twenty-four with extended content",
-      },
-      { value: "value-25", label: "Long text example twenty-five" },
-      {
-        value: "value-26",
-        label: "Long text example twenty-six with extra info",
-      },
-      {
-        value: "value-27",
-        label: "Long text example twenty-seven with meaningful content",
-      },
-      {
-        value: "value-28",
-        label: "Long text example twenty-eight with additional details",
-      },
-      { value: "value-29", label: "Long text example twenty-nine" },
-      {
-        value: "value-30",
-        label: "Long text example thirty with some content",
-      },
-      { value: "value-31", label: "Long text example thirty-one" },
-      {
-        value: "value-32",
-        label: "Long text example thirty-two with extra details",
-      },
-      {
-        value: "value-33",
-        label: "Long text example thirty-three with meaningful content",
-      },
-      {
-        value: "value-34",
-        label: "Long text example thirty-four with extended description",
-      },
-      { value: "value-35", label: "Long text example thirty-five" },
-      {
-        value: "value-36",
-        label: "Long text example thirty-six with extra content",
-      },
-      { value: "value-37", label: "Long text example thirty-seven" },
-      {
-        value: "value-38",
-        label: "Long text example thirty-eight with meaningful details",
-      },
-      { value: "value-39", label: "Long text example thirty-nine" },
-      { value: "value-40", label: "Long text example forty with extra text" },
-      { value: "value-41", label: "Long text example forty-one" },
-      {
-        value: "value-42",
-        label: "Long text example forty-two with some content",
-      },
-      { value: "value-43", label: "Long text example forty-three" },
-      {
-        value: "value-44",
-        label: "Long text example forty-four with extended meaningful content",
-      },
-      { value: "value-45", label: "Long text example forty-five" },
-      {
-        value: "value-46",
-        label: "Long text example forty-six with additional details",
-      },
-      {
-        value: "value-47",
-        label: "Long text example forty-seven with meaningful text",
-      },
-      {
-        value: "value-48",
-        label: "Long text example forty-eight with more content",
-      },
-      { value: "value-49", label: "Long text example forty-nine" },
-      {
-        value: "value-50",
-        label: "Long text example fifty with extra content",
-      },
-      { value: "value-51", label: "Long text example fifty-one" },
-      {
-        value: "value-52",
-        label: "Long text example fifty-two with extra meaningful text",
-      },
-      { value: "value-53", label: "Long text example fifty-three" },
-      {
-        value: "value-54",
-        label: "Long text example fifty-four with meaningful details",
-      },
-      { value: "value-55", label: "Long text example fifty-five" },
-      {
-        value: "value-56",
-        label: "Long text example fifty-six with extra info",
-      },
-      {
-        value: "value-57",
-        label: "Long text example fifty-seven with additional content",
-      },
-      { value: "value-58", label: "Long text example fifty-eight" },
-      {
-        value: "value-59",
-        label: "Long text example fifty-nine with some details",
-      },
-      { value: "value-60", label: "Long text example sixty" },
-      { value: "value-61", label: "Long text example sixty-one" },
-      {
-        value: "value-62",
-        label: "Long text example sixty-two with extra content",
-      },
-      { value: "value-63", label: "Long text example sixty-three" },
-      {
-        value: "value-64",
-        label: "Long text example sixty-four with meaningful details",
-      },
-      { value: "value-65", label: "Long text example sixty-five" },
-      {
-        value: "value-66",
-        label: "Long text example sixty-six with additional info",
-      },
-      {
-        value: "value-67",
-        label: "Long text example sixty-seven with extended description",
-      },
-      { value: "value-68", label: "Long text example sixty-eight" },
-      {
-        value: "value-69",
-        label: "Long text example sixty-nine with extra content",
-      },
-      { value: "value-70", label: "Long text example seventy" },
-      { value: "value-71", label: "Long text example seventy-one" },
-      {
-        value: "value-72",
-        label: "Long text example seventy-two with meaningful content",
-      },
-      { value: "value-73", label: "Long text example seventy-three" },
-      {
-        value: "value-74",
-        label: "Long text example seventy-four with extra details",
-      },
-      { value: "value-75", label: "Long text example seventy-five" },
-      {
-        value: "value-76",
-        label: "Long text example seventy-six with extended info",
-      },
-      { value: "value-77", label: "Long text example seventy-seven" },
-      {
-        value: "value-78",
-        label: "Long text example seventy-eight with more content",
-      },
-      { value: "value-79", label: "Long text example seventy-nine" },
-      {
-        value: "value-80",
-        label: "Long text example eighty with meaningful details",
-      },
-      { value: "value-81", label: "Long text example eighty-one" },
-      {
-        value: "value-82",
-        label: "Long text example eighty-two with extra info",
-      },
-      { value: "value-83", label: "Long text example eighty-three" },
-      {
-        value: "value-84",
-        label: "Long text example eighty-four with additional content",
-      },
-      { value: "value-85", label: "Long text example eighty-five" },
-      { value: "value-86", label: "Long text example eighty-six" },
-      {
-        value: "value-87",
-        label: "Long text example eighty-seven with extra text",
-      },
-      { value: "value-88", label: "Long text example eighty-eight" },
-      {
-        value: "value-89",
-        label: "Long text example eighty-nine with meaningful content",
-      },
-      { value: "value-90", label: "Long text example ninety" },
-      {
-        value: "value-91",
-        label: "Long text example ninety-one with some extra details",
-      },
-      { value: "value-92", label: "Long text example ninety-two" },
-      {
-        value: "value-93",
-        label: "Long text example ninety-three with extended info",
-      },
-      { value: "value-94", label: "Long text example ninety-four" },
-      {
-        value: "value-95",
-        label: "Long text example ninety-five with extra content",
-      },
-      { value: "value-96", label: "Long text example ninety-six" },
-      {
-        value: "value-97",
-        label: "Long text example ninety-seven with additional info",
-      },
-      { value: "value-98", label: "Long text example ninety-eight" },
-      {
-        value: "value-99",
-        label: "Long text example ninety-nine with meaningful content",
-      },
-      { value: "value-100", label: "Long text example one hundred" },
-      { value: "value-101", label: "Long text example one hundred-one" },
-      { value: "value-102", label: "Long text example one hundred-two" },
-      { value: "value-103", label: "Long text example one hundred-three" },
-    ],
+// Sample data sets
+const simpleOptions = [
+  { value: "apple", label: "Apple" },
+  { value: "banana", label: "Banana" },
+  { value: "cherry", label: "Cherry" },
+  { value: "date", label: "Date" },
+  { value: "elderberry", label: "Elderberry" },
+];
+
+const countriesOptions = [
+  { value: "us", label: "United States" },
+  { value: "ca", label: "Canada" },
+  { value: "uk", label: "United Kingdom" },
+  { value: "de", label: "Germany" },
+  { value: "fr", label: "France" },
+  { value: "jp", label: "Japan" },
+  { value: "au", label: "Australia" },
+  { value: "br", label: "Brazil" },
+  { value: "in", label: "India" },
+  { value: "cn", label: "China" },
+];
+
+const largeDataset = Array.from({ length: 1000 }, (_, i) => ({
+  value: `item-${i}`,
+  label: `Item ${i + 1} - ${["Alpha", "Beta", "Gamma", "Delta", "Epsilon"][i % 5]} Series`,
+}));
+
+const longLabelsOptions = [
+  { value: "short", label: "Short" },
+  { value: "medium", label: "Medium length option" },
+  {
+    value: "long",
+    label: "This is a very long option label that might wrap to multiple lines",
   },
-  render: (args) => <Dropdown {...args} />,
+  {
+    value: "extra-long",
+    label:
+      "This is an extremely long option label that definitely will wrap to multiple lines and test how the component handles very long text content",
+  },
+];
+
+// Stories
+export const Default: Story = {
+  args: {
+    label: "Choose an option",
+    options: simpleOptions,
+  },
+};
+
+export const WithSearch: Story = {
+  args: {
+    label: "Search countries",
+    options: countriesOptions,
+    search: true,
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "Enable search to filter options. Search text is highlighted in results.",
+      },
+    },
+  },
+};
+
+export const MultipleSelection: Story = {
+  args: {
+    label: "Select multiple fruits",
+    options: simpleOptions,
+    multipleSelect: true,
+    search: true,
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "Allow users to select multiple options. Selected items appear as removable tags.",
+      },
+    },
+  },
+};
+
+export const LargeDataset: Story = {
+  args: {
+    label: "Large dataset (1000 items)",
+    options: largeDataset,
+    search: true,
+    maxHeight: 300,
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "Automatically uses virtualization for datasets with more than 100 options to maintain performance.",
+      },
+    },
+  },
+};
+
+export const WithPortal: Story = {
+  args: {
+    label: "Portal dropdown",
+    options: countriesOptions,
+    usePortal: true,
+    search: true,
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "Renders dropdown in a portal to avoid z-index issues. Useful when dropdown is inside modals or containers with overflow hidden.",
+      },
+    },
+  },
+};
+
+export const OutlinedStyle: Story = {
+  args: {
+    label: "Outlined dropdown",
+    options: simpleOptions,
+    outlined: true,
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: "Use outlined style for a more subtle appearance.",
+      },
+    },
+  },
+};
+
+export const CustomWidth: Story = {
+  args: {
+    label: "Custom width",
+    options: longLabelsOptions,
+    width: "500px",
+    search: true,
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: "Customize dropdown width to accommodate longer labels.",
+      },
+    },
+  },
+};
+
+export const FormIntegration: Story = {
+  args: {
+    label: "Form field",
+    name: "category",
+    options: simpleOptions,
+  },
+  render: (args) => (
+    <form
+      onSubmit={(e) => {
+        e.preventDefault();
+        const formData = new FormData(e.currentTarget);
+        console.log("Form data:", Object.fromEntries(formData));
+      }}
+    >
+      <Dropdown {...args} />
+      <br />
+      <br />
+      <button
+        type="submit"
+        className="rounded bg-blue-500 px-4 py-2 text-white"
+      >
+        Submit Form
+      </button>
+    </form>
+  ),
+  parameters: {
+    docs: {
+      description: {
+        story: "Dropdown works seamlessly with forms using hidden inputs.",
+      },
+    },
+  },
+};
+
+export const CustomRendering: Story = {
+  args: {
+    label: "Custom option rendering",
+    options: countriesOptions,
+    search: true,
+    render: ({ label, selected }) => (
+      <div className={`flex items-center gap-2 ${selected ? "font-bold" : ""}`}>
+        <span className="text-lg">🌍</span>
+        <span>{label}</span>
+        {selected && <span className="text-green-500">✓</span>}
+      </div>
+    ),
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: "Use the render prop to customize how options are displayed.",
+      },
+    },
+  },
+};
+
+export const EmptyState: Story = {
+  args: {
+    label: "Empty dropdown",
+    options: [],
+    search: true,
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: "How the dropdown behaves with no options.",
+      },
+    },
+  },
+};
+
+// Interactive story with state
+export const Interactive: Story = {
+  render: () => {
+    const [selected, setSelected] = useState(null);
+    const [multiSelected, setMultiSelected] = useState([]);
+
+    return (
+      <div className="space-y-6">
+        <div>
+          <h3 className="mb-2 text-lg font-semibold">Single Selection</h3>
+          <Dropdown
+            label="Choose one"
+            options={simpleOptions}
+            onChange={setSelected}
+          />
+          <p className="mt-2 text-sm text-gray-600">
+            Selected: {selected ? JSON.stringify(selected) : "None"}
+          </p>
+        </div>
+
+        <div>
+          <h3 className="mb-2 text-lg font-semibold">Multiple Selection</h3>
+          <Dropdown
+            label="Choose multiple"
+            options={simpleOptions}
+            multipleSelect
+            search
+            onChange={(e) => {
+              if (Array.isArray(e)) {
+                setMultiSelected(e.map((item) => item.label));
+              }
+            }}
+          />
+          <p className="mt-2 text-sm text-gray-600">
+            Selected:{" "}
+            {multiSelected.length > 0 ? JSON.stringify(multiSelected) : "None"}
+          </p>
+        </div>
+      </div>
+    );
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "Interactive example showing state management with both single and multiple selection modes.",
+      },
+    },
+  },
 };
