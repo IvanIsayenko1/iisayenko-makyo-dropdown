@@ -7,7 +7,7 @@ import {
   useRef,
   useState,
 } from "react";
-import { DropdownComponent, DropdownContextType, SelectOption } from "./types";
+import { DropdownContextType, DropdownProps, SelectOption } from "./types";
 import { Option } from "./Option";
 import { Search } from "./Search";
 import { Virtuoso } from "react-virtuoso";
@@ -18,7 +18,7 @@ import { ChevronDown, CircleX } from "lucide-react";
 export const DropdownContext = createContext<DropdownContextType | null>(null);
 
 // the component
-export const Dropdown: DropdownComponent = ({
+export const Dropdown: React.FC<DropdownProps> = ({
   name,
   multipleSelect = false,
   search = false,
@@ -69,7 +69,12 @@ export const Dropdown: DropdownComponent = ({
 
     if (Array.isArray(selected)) {
       return selected.map((select) => (
-        <input type="hidden" name={name} value={select.value} />
+        <input
+          key={select.value}
+          type="hidden"
+          name={name}
+          value={select.value}
+        />
       ));
     }
 
@@ -121,7 +126,6 @@ export const Dropdown: DropdownComponent = ({
         aria-haspopup="listbox"
         aria-controls={`${dropdownId}-listbox`}
         aria-label={label || "Select an option"}
-        aria-activedescendant={`${dropdownId}-listbox`}
         id={dropdownId}
         type="button"
         className={`flex min-h-9 w-full cursor-pointer flex-wrap items-center gap-1 rounded-md border px-2 py-1 text-left ${outlined ? "border-gray-300 bg-transparent text-gray-500 dark:border-neutral-700 dark:text-gray-300" : "border-gray-300 bg-white text-gray-500 dark:border-neutral-700 dark:bg-neutral-800 dark:text-gray-300"}`}
@@ -212,7 +216,7 @@ export const Dropdown: DropdownComponent = ({
       observer.observe(ref.current);
     }
 
-    const hendleClickOutside = (e: MouseEvent) => {
+    const handleClickOutside = (e: MouseEvent) => {
       if (
         ref.current &&
         !ref.current.contains(e.target as Node) &&
@@ -225,11 +229,11 @@ export const Dropdown: DropdownComponent = ({
 
     window.addEventListener("resize", updatePosition);
     window.addEventListener("scroll", updatePosition);
-    document.addEventListener("mousedown", hendleClickOutside);
+    document.addEventListener("mousedown", handleClickOutside);
 
     return () => {
       observer?.disconnect();
-      document.removeEventListener("mousedown", hendleClickOutside);
+      document.removeEventListener("mousedown", handleClickOutside);
       window.removeEventListener("resize", updatePosition);
       window.removeEventListener("scroll", updatePosition);
     };
@@ -259,7 +263,7 @@ export const Dropdown: DropdownComponent = ({
             {label}
           </label>
         )}
-        <div className={"realtive"} style={{ width: width }} ref={ref}>
+        <div className="relative" style={{ width: width }} ref={ref}>
           {/* hidden inputs */}
           {renderHiddenInput}
 

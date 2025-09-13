@@ -1,13 +1,10 @@
-// Dropdown
-export interface DropdownComponent extends React.FC<DropdownProps> {}
-
 export interface DropdownProps {
   render?: (props: { selected: boolean; label: string }) => React.ReactNode;
   onChange?: (value: SelectOption | SelectOption[] | null) => void;
   name?: string;
   multipleSelect?: boolean;
   search?: boolean;
-  options: DropdownOptionProps[];
+  options: SelectOption[];
   maxHeight?: number;
   width?: string;
   usePortal?: boolean;
@@ -16,19 +13,16 @@ export interface DropdownProps {
   outlined?: boolean;
 }
 
-// Dropdown Option
-export interface DropdownOptionProps extends SelectOption {}
-
 // Other
 export interface DropdownContextType {
   dropdownId: string;
-  isOpen?: boolean;
-  setIsOpen?: (isOpen: boolean) => void;
-  searchText?: string;
-  setSearchText?: (searchText: string) => void;
-  selected?: SelectOption | SelectOption[];
-  setSelected?: (selected: SelectOption | SelectOption[]) => void;
-  multipleSelect?: boolean;
+  isOpen: boolean;
+  setIsOpen: (isOpen: boolean) => void;
+  searchText: string;
+  setSearchText: (searchText: string) => void;
+  selected: SelectOption | SelectOption[];
+  setSelected: (selected: SelectOption | SelectOption[]) => void;
+  multipleSelect: boolean;
   onChange?: (value: SelectOption | SelectOption[] | null) => void;
   render?: (props: { selected: boolean; label: string }) => React.ReactNode;
 }
