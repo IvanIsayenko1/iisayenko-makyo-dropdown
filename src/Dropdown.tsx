@@ -7,7 +7,7 @@ import {
   useRef,
   useState,
 } from "react";
-import { DropdownContextType, DropdownProps, SelectOption } from "./types";
+import { DropdownContextType, DropdownProps, DropdownOption } from "./types";
 import { Option } from "./Option";
 import { Search } from "./Search";
 import { Virtuoso } from "react-virtuoso";
@@ -34,7 +34,7 @@ export const Dropdown: React.FC<DropdownProps> = ({
 }) => {
   const [searchText, setSearchText] = useState<string>("");
   const [selected, setSelected] = useState<
-    SelectOption | SelectOption[] | null
+    DropdownOption | DropdownOption[] | null
   >(null);
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [position, setPosition] = useState({ top: 0, left: 0, width: 0 });

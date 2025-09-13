@@ -1,10 +1,10 @@
 export interface DropdownProps {
   render?: (props: { selected: boolean; label: string }) => React.ReactNode;
-  onChange?: (value: SelectOption | SelectOption[] | null) => void;
+  onChange?: (value: DropdownOption | DropdownOption[] | null) => void;
   name?: string;
   multipleSelect?: boolean;
   search?: boolean;
-  options: SelectOption[];
+  options: DropdownOption[];
   maxHeight?: number;
   width?: string;
   usePortal?: boolean;
@@ -20,14 +20,14 @@ export interface DropdownContextType {
   setIsOpen: (isOpen: boolean) => void;
   searchText: string;
   setSearchText: (searchText: string) => void;
-  selected: SelectOption | SelectOption[];
-  setSelected: (selected: SelectOption | SelectOption[]) => void;
+  selected: DropdownOption | DropdownOption[];
+  setSelected: (selected: DropdownOption | DropdownOption[]) => void;
   multipleSelect: boolean;
-  onChange?: (value: SelectOption | SelectOption[] | null) => void;
+  onChange?: (value: DropdownOption | DropdownOption[] | null) => void;
   render?: (props: { selected: boolean; label: string }) => React.ReactNode;
 }
 
-export interface SelectOption {
+export interface DropdownOption {
   value: string;
   label: string;
 }

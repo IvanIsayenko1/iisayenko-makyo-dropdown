@@ -159,38 +159,20 @@ const largeOptions = Array.from({ length: 1000 }, (_, i) => ({
 
 ### DropdownProps
 
-| Prop             | Type                                                      | Default          | Description                     |
-| ---------------- | --------------------------------------------------------- | ---------------- | ------------------------------- |
-| `options`        | `SelectOption[]`                                          | **required**     | Array of options to display     |
-| `onChange`       | `(value: SelectOption \| SelectOption[] \| null) => void` | `undefined`      | Callback when selection changes |
-| `multipleSelect` | `boolean`                                                 | `false`          | Enable multiple selection       |
-| `search`         | `boolean`                                                 | `false`          | Enable search functionality     |
-| `usePortal`      | `boolean`                                                 | `false`          | Render dropdown in portal       |
-| `name`           | `string`                                                  | `undefined`      | Form input name                 |
-| `label`          | `string`                                                  | `undefined`      | Dropdown label                  |
-| `id`             | `string`                                                  | `auto-generated` | Component ID                    |
-| `width`          | `string`                                                  | `"350px"`        | Dropdown width                  |
-| `maxHeight`      | `number`                                                  | `300`            | Maximum height of options list  |
-| `outlined`       | `boolean`                                                 | `false`          | Use outlined style              |
-| `render`         | `(props: RenderProps) => ReactNode`                       | `undefined`      | Custom option renderer          |
-
-### SelectOption
-
-```tsx
-interface SelectOption {
-  value: string;
-  label: string;
-}
-```
-
-### RenderProps
-
-```tsx
-interface RenderProps {
-  label: string;
-  selected: boolean;
-}
-```
+| Prop             | Type                                                          | Default          | Description                     |
+| ---------------- | ------------------------------------------------------------- | ---------------- | ------------------------------- |
+| `options`        | `DropdownOption[]`                                            | **required**     | Array of options to display     |
+| `onChange`       | `(value: DropdownOption \| DropdownOption[] \| null) => void` | `undefined`      | Callback when selection changes |
+| `multipleSelect` | `boolean`                                                     | `false`          | Enable multiple selection       |
+| `search`         | `boolean`                                                     | `false`          | Enable search functionality     |
+| `usePortal`      | `boolean`                                                     | `false`          | Render dropdown in portal       |
+| `name`           | `string`                                                      | `undefined`      | Form input name                 |
+| `label`          | `string`                                                      | `undefined`      | Dropdown label                  |
+| `id`             | `string`                                                      | `auto-generated` | Component ID                    |
+| `width`          | `string`                                                      | `"350px"`        | Dropdown width                  |
+| `maxHeight`      | `number`                                                      | `300`            | Maximum height of options list  |
+| `outlined`       | `boolean`                                                     | `false`          | Use outlined style              |
+| `render`         | `(props: RenderProps) => ReactNode`                           | `undefined`      | Custom option renderer          |
 
 ## 🎨 Styling
 

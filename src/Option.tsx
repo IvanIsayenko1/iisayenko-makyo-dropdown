@@ -1,8 +1,8 @@
 import { useCallback, useContext, useMemo } from "react";
-import { SelectOption } from "./types";
+import { DropdownOption } from "./types";
 import { DropdownContext } from "./Dropdown";
 
-export const Option: React.FC<SelectOption> = ({ value, label }) => {
+export const Option: React.FC<DropdownOption> = ({ value, label }) => {
   const context = useContext(DropdownContext);
   if (!context) {
     throw new Error("Dropdown.Option must be used within a Dropdown");
