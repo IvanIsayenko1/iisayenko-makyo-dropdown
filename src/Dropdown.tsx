@@ -105,7 +105,7 @@ export const Dropdown: React.FC<DropdownProps> = ({
           <button
             aria-label={`Remove ${select.label}`}
             onClick={(e) => handleClick(e, select.value)}
-            className="flex-shrink-0 text-gray-500 dark:text-gray-400"
+            className="flex-shrink-0 text-gray-600 dark:text-gray-300"
           >
             <CircleX size={16} />
           </button>
@@ -113,7 +113,7 @@ export const Dropdown: React.FC<DropdownProps> = ({
       ));
     } else {
       result = (
-        <span className="text-gray-500 dark:text-gray-400">
+        <span className="text-gray-600 dark:text-gray-300">
           {selected?.label}
         </span>
       );
@@ -128,12 +128,12 @@ export const Dropdown: React.FC<DropdownProps> = ({
         aria-label={label || "Select an option"}
         id={dropdownId}
         type="button"
-        className={`flex min-h-9 w-full cursor-pointer flex-wrap items-center gap-1 rounded-md border px-2 py-1 text-left ${outlined ? "border-gray-300 bg-transparent text-gray-500 dark:border-neutral-700 dark:text-gray-300" : "border-gray-300 bg-white text-gray-500 dark:border-neutral-700 dark:bg-neutral-800 dark:text-gray-300"}`}
+        className={`flex min-h-9 w-full cursor-pointer flex-wrap items-center gap-1 rounded-md border px-2 py-1 text-left ${outlined ? "border-gray-300 bg-transparent text-gray-600 dark:border-neutral-700 dark:text-gray-300" : "border-gray-300 bg-white text-gray-600 dark:border-neutral-700 dark:bg-neutral-800 dark:text-gray-300"}`}
         onClick={handleClickBox}
       >
         <span className="flex flex-1 flex-wrap gap-1">{result}</span>
         <span className="ml-2">
-          <ChevronDown size={16} className="text-gray-500 dark:text-gray-300" />
+          <ChevronDown size={16} className="text-gray-600 dark:text-gray-300" />
         </span>
       </button>
     );
@@ -144,23 +144,32 @@ export const Dropdown: React.FC<DropdownProps> = ({
    * If the filtered options are more than 100, Virtuoso renders them.
    */
   const renderOptions = useMemo(() => {
-    const content =
-      filteredOptions.length <= 100 ? (
-        <div
-          style={{ maxHeight, overflow: "auto" }}
-          className="bg-white dark:bg-neutral-800"
-        >
-          {filteredOptions.map((option) => (
-            <Option key={option.value} {...option} />
-          ))}
+    let content;
+    if (filteredOptions.length === 0) {
+      content = (
+        <div className="px-4 py-3 text-center text-sm text-gray-600 dark:text-gray-300">
+          No results
         </div>
-      ) : (
-        <Virtuoso
-          style={{ height: maxHeight }}
-          totalCount={filteredOptions.length}
-          itemContent={(index) => <Option {...filteredOptions[index]} />}
-        />
       );
+    } else {
+      content =
+        filteredOptions.length <= 100 ? (
+          <div
+            style={{ maxHeight, overflow: "auto" }}
+            className="bg-white dark:bg-neutral-800"
+          >
+            {filteredOptions.map((option) => (
+              <Option key={option.value} {...option} />
+            ))}
+          </div>
+        ) : (
+          <Virtuoso
+            style={{ height: maxHeight }}
+            totalCount={filteredOptions.length}
+            itemContent={(index) => <Option {...filteredOptions[index]} />}
+          />
+        );
+    }
 
     const dropdown = (
       <div
@@ -224,6 +233,7 @@ export const Dropdown: React.FC<DropdownProps> = ({
         !optionsRef.current.contains(e.target as Node)
       ) {
         setIsOpen(false);
+        setSearchText("");
       }
     };
 
@@ -257,7 +267,7 @@ export const Dropdown: React.FC<DropdownProps> = ({
       <div className="flex flex-row gap-8">
         {label && (
           <label
-            className="flex h-9 items-center text-sm font-medium text-gray-500 dark:text-gray-400"
+            className="flex h-9 items-center text-sm font-medium text-gray-600 dark:text-gray-300"
             htmlFor={dropdownId}
           >
             {label}

@@ -13,13 +13,13 @@ export const Search = () => {
   };
 
   return (
-    <div className="sticky top-0 flex h-10 w-full items-center gap-2 border-b border-gray-300 bg-white px-4 py-1 dark:border-neutral-700 dark:bg-neutral-800">
+    <div className="dark:bg-neutral-800- sticky top-0 z-10 flex h-10 w-full items-center gap-2 border-b border-gray-300 bg-white px-4 py-1 dark:border-neutral-700">
       <SearchIcon
         size={16}
-        className="flex-shrink-0 text-gray-500 dark:text-gray-400"
+        className="flex-shrink-0 text-gray-600 dark:text-gray-300"
       />
       <input
-        className="h-full w-full bg-white text-gray-500 focus:outline-none focus:ring-0 dark:bg-neutral-800 dark:text-gray-400"
+        className="h-full w-full bg-white text-gray-600 focus:outline-none focus:ring-0 dark:bg-neutral-800 dark:text-gray-300"
         type="text"
         role="searchbox"
         aria-label="Search options"
